@@ -1,0 +1,21 @@
+# Python virtual environments
+venv/
+env/
+.venv/
+*/venv/
+
+# Node modules
+node_modules/
+frontend/node_modules/
+server/node_modules/
+frontend/plant-disease/node_modules/
+
+# Deployment / build files
+deployment/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.DS_Store
+

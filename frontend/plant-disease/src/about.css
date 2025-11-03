@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.about-us {
+  background-image: url('/static_img/pbg.jpg'); /* Your image remains */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.about-us-content {
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent overlay */
+  color: #1f3a2d;
+  padding: 50px;
+  border-radius: 16px;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.about-us h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-family: 'Itim', cursive;
+  color: #2f5f38;
+}
+
+.about-us p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #3b3b3b;
+  margin-bottom: 16px;
+}
+
+.about-us h2 {
+  font-size: 1.8em;
+  margin-top: 30px;
+  color: #4c8056;
+  font-family: 'Kanit', sans-serif;
+  font-weight: bold;
+}
+
+.about-us a {
+  color: #2f5f38;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.about-us a:hover {
+  color: #66a36e;
+  text-decoration: underline;
+}
