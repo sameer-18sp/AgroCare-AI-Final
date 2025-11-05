@@ -7,6 +7,10 @@ export const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [currentStat, setCurrentStat] = useState(0);
+  const [showDemoModal, setShowDemoModal] = useState(false);
+  const [showLearnMore, setShowLearnMore] = useState(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const stats = [
     { number: "50K+", label: "Plants Analyzed", icon: "🌱" },
@@ -20,19 +24,22 @@ export const Home = () => {
       title: "AI Disease Detection",
       description: "Advanced machine learning to identify plant diseases instantly",
       icon: "📷",
-      color: "feature-emerald"
+      color: "feature-emerald",
+      details: "Our AI analyzes images of your crops and identifies diseases with 98% accuracy. Get instant diagnosis and treatment recommendations powered by deep learning models trained on millions of plant images."
     },
     {
       title: "Smart Analytics", 
       description: "Comprehensive insights and recommendations for your crops",
       icon: "📊",
-      color: "feature-blue"
+      color: "feature-blue",
+      details: "Track crop health over time, receive personalized recommendations, and optimize your farming practices with data-driven insights. Our analytics help you make informed decisions for better yields."
     },
     {
       title: "Real-time Monitoring",
       description: "24/7 crop health monitoring with instant alerts",
       icon: "⚡",
-      color: "feature-purple"
+      color: "feature-purple",
+      details: "Get instant notifications when issues are detected. Our system monitors your crops continuously and alerts you to potential problems before they become serious, saving you time and money."
     }
   ];
 
@@ -57,6 +64,49 @@ export const Home = () => {
       clearInterval(interval);
     };
   }, []);
+
+  const handleStartAnalyzing = () => {
+    // Add smooth scroll to top and then navigate
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      // Replace with your actual route or action
+      console.log('Navigating to analysis page...');
+      // window.location.href = '/analyze';
+      alert('Redirecting to analysis page... (Replace with your route)');
+    }, 500);
+  };
+
+  const handleWatchDemo = () => {
+    setShowDemoModal(true);
+    setIsPlaying(false);
+  };
+
+  const handlePlayDemo = () => {
+    setIsPlaying(true);
+    // Here you would actually play a video
+    console.log('Playing demo video...');
+  };
+
+  const handleLearnMore = (featureIndex) => {
+    setShowLearnMore(featureIndex);
+  };
+
+  const handleTryFree = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      // Replace with your actual signup route
+      console.log('Navigating to signup...');
+      // window.location.href = '/signup';
+      alert('Redirecting to signup... (Replace with your route)');
+    }, 2000);
+  };
+
+  const closeModal = () => {
+    setShowDemoModal(false);
+    setShowLearnMore(null);
+    setIsPlaying(false);
+  };
 
   return (
     <main className="home-container">
@@ -124,11 +174,11 @@ export const Home = () => {
 
           {/* CTA Buttons */}
           <div className="cta-buttons">
-            <button className="btn-primary">
+            <button className="btn-primary" onClick={handleStartAnalyzing}>
               Start Analyzing
               <span className="btn-arrow">→</span>
             </button>
-            <button className="btn-secondary">
+            <button className="btn-secondary" onClick={handleWatchDemo}>
               Watch Demo
             </button>
           </div>
@@ -165,7 +215,10 @@ export const Home = () => {
                 <h3 className="feature-title">{feature.title}</h3>
                 <p className="feature-description">{feature.description}</p>
                 
-                <div className="feature-link">
+                <div 
+                  className="feature-link"
+                  onClick={() => handleLearnMore(index)}
+                >
                   Learn more <span className="link-arrow">→</span>
                 </div>
               </div>
@@ -177,11 +230,89 @@ export const Home = () => {
         <div className="bottom-cta">
           <h2 className="cta-title">Ready to Get Started?</h2>
           <p className="cta-description">Join thousands of farmers already using AgroCare AI</p>
-          <button className="cta-button">
+          <button className="cta-button" onClick={handleTryFree}>
             Try It Free Today
           </button>
         </div>
       </div>
+
+      {/* Demo Modal */}
+      {showDemoModal && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>×</button>
+            <h2 className="modal-title">🎥 Product Demo</h2>
+            <div className="video-container">
+              {!isPlaying ? (
+                <div className="video-placeholder" onClick={handlePlayDemo}>
+                  <div className="play-button">▶</div>
+                  <p className="video-text">Click to Play Demo</p>
+                </div>
+              ) : (
+                <div className="video-player">
+                  <video
+                    controls
+                    autoPlay
+                    style={{
+                      width: '100%',
+                      borderRadius: '15px',
+                      maxHeight: '400px'
+                    }}
+                  >
+                    <source src="/demo-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+            </div>
+            <p className="modal-description">
+              See how AgroCare AI revolutionizes farming with real-time disease detection,
+              smart analytics, and actionable insights for your crops.
+            </p>
+            <div className="demo-features">
+              <div className="demo-feature">✓ Upload crop images</div>
+              <div className="demo-feature">✓ Get instant AI analysis</div>
+              <div className="demo-feature">✓ Receive treatment recommendations</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Learn More Modal */}
+      {showLearnMore !== null && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content feature-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>×</button>
+            <div className="modal-icon-large">{features[showLearnMore].icon}</div>
+            <h2 className="modal-title">{features[showLearnMore].title}</h2>
+            <p className="modal-description">
+              {features[showLearnMore].details}
+            </p>
+            <div className="modal-actions">
+              <button className="modal-button primary" onClick={() => {
+                closeModal();
+                handleStartAnalyzing();
+              }}>
+                Get Started Now
+              </button>
+              <button className="modal-button secondary" onClick={closeModal}>
+                Learn More Later
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className="success-toast">
+          <div className="success-icon">✓</div>
+          <div className="success-content">
+            <h4 className="success-title">Welcome Aboard!</h4>
+            <p className="success-text">Redirecting to your dashboard...</p>
+          </div>
+        </div>
+      )}
 
       {/* Scroll indicator */}
       <div className="scroll-indicator">
