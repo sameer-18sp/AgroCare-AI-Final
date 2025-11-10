@@ -10,17 +10,19 @@ import './index.css'
 // const audience = import.meta.env.VITE_API_IDENTIFIER
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Auth0Provider
-    domain="dev-uco6t85dzenc0bsd.us.auth0.com"
-    clientId="DjyjYvvLNfHneEmCIIsm3HaJZzipC2VI"
-    authorizationParams={{
-      redirect_uri: window.location.origin,
-      audience: "https://seed-sync/api",
-      scope: "openid profile email predict:read"
-    }}
-  >
-    <App />
-  </Auth0Provider>
+  <React.StrictMode>
+    <Auth0Provider
+      domain="dev-uco6t85dzenc0bsd.us.auth0.com"
+      clientId="DjyjYvvLNfHneEmCIIsm3HaJZzipC2VI"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+        audience: "https://seed-sync/api",
+        scope: "openid profile email predict:read"
+      }}
+    >
+      <App />
+    </Auth0Provider>
+  </React.StrictMode>
 )
 
 
