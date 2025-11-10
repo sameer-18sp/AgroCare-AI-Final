@@ -7,9 +7,20 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   },
   server: {
     port: 5173,
     strictPort: true,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  },
+  esbuild: {
+    jsxInject: `import React from 'react'`
   }
 })
