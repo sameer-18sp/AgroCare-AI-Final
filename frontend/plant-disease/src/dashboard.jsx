@@ -22,7 +22,7 @@ const Dashboard = () => {
         const toastId = toast.loading('Loading history...');
         try {
           const token = await getAccessTokenSilently();
-          const res = await axios.get('http://localhost:8000/history', {
+          const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/history`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setHistory(res.data);
@@ -81,7 +81,7 @@ const Dashboard = () => {
     setDeleting(true);
     try {
       const token = await getAccessTokenSilently();
-      await axios.delete(`http://localhost:8000/history/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/history/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('History deleted!');
