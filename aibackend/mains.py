@@ -207,9 +207,10 @@ MODEL_TOMATO = None
 MODEL_CAPSICUM = None
 
 try:
-    MODEL_POTATO = tf.keras.models.load_model("models/Potato_models/1.keras")
-    MODEL_TOMATO = tf.keras.models.load_model("models/tomato_models/1.keras")
-    MODEL_CAPSICUM = tf.keras.models.load_model("models/Capsicum_models/1.keras")
+    base_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models")
+    MODEL_POTATO = tf.keras.models.load_model(os.path.join(base_path, "Potato_models/1.keras"))
+    MODEL_TOMATO = tf.keras.models.load_model(os.path.join(base_path, "tomato_models/1.keras"))
+    MODEL_CAPSICUM = tf.keras.models.load_model(os.path.join(base_path, "Capsicum_models/1.keras"))
     print("Models loaded successfully")
 except Exception as e:
     print(f"Error loading models: {e}")
