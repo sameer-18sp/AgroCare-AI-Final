@@ -192,6 +192,7 @@ origins = [
     "http://localhost:5173",  # Local development
     "http://localhost:3000",
     "https://*.vercel.app",   # Vercel preview deployments
+    "https://agro-care-ai-final.vercel.app"  # Production domain
 ]
 app.add_middleware(
     CORSMiddleware,
