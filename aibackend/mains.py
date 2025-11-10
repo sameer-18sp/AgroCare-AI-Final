@@ -207,7 +207,12 @@ MODEL_TOMATO = None
 MODEL_CAPSICUM = None
 
 try:
+    # Try local development path first
     base_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models")
+    if not os.path.exists(os.path.join(base_path, "Potato_models")):
+        # If not found, try production path
+        base_path = "models"
+    print(f"Loading models from: {base_path}")
     MODEL_POTATO = tf.keras.models.load_model(os.path.join(base_path, "Potato_models/1.keras"))
     MODEL_TOMATO = tf.keras.models.load_model(os.path.join(base_path, "tomato_models/1.keras"))
     MODEL_CAPSICUM = tf.keras.models.load_model(os.path.join(base_path, "Capsicum_models/1.keras"))
