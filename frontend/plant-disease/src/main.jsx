@@ -15,11 +15,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-uco6t85dzenc0bsd.us.auth0.com"
       clientId="DjyjYvvLNfHneEmCIIsm3HaJZzipC2VI"
       authorizationParams={{
-        redirect_uri: 'https://agro-care-ai-final.vercel.app',
+        redirect_uri: window.location.origin,
         audience: "https://seed-sync/api",
         scope: "openid profile email predict:read"
       }}
       cacheLocation="localstorage"
+      useRefreshTokens={true}
     >
       <App />
     </Auth0Provider>
