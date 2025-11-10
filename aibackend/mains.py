@@ -175,7 +175,8 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-client = MongoClient("mongodb://localhost:27017/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
 db = client["agrocare"]
 history_collection = db["history"]
 
@@ -185,7 +186,12 @@ app = FastAPI()
 from chatbot_api import router as chatbot_router
 app.include_router(chatbot_router)
 
-origins = ["http://localhost:5173"]
+# Allow localhost in development and Vercel domain in production
+origins = [
+    "http://localhost:5173",  # Local development
+    "http://localhost:3000",
+    "https://*.vercel.app",   # Vercel preview deployments
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -194,9 +200,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_POTATO = tf.keras.models.load_model(r"../models/Potato_models/1.keras")
-MODEL_TOMATO = tf.keras.models.load_model(r"../models/tomato_models/1.keras")
-MODEL_CAPSICUM = tf.keras.models.load_model(r"../models/Capsicum_models/1.keras")
+# Initialize models as None first
+MODEL_POTATO = None
+MODEL_TOMATO = None
+MODEL_CAPSICUM = None
+
+try:
+    MODEL_POTATO = tf.keras.models.load_model("models/Potato_models/1.keras")
+    MODEL_TOMATO = tf.keras.models.load_model("models/tomato_models/1.keras")
+    MODEL_CAPSICUM = tf.keras.models.load_model("models/Capsicum_models/1.keras")
+    print("Models loaded successfully")
+except Exception as e:
+    print(f"Error loading models: {e}")
 
 CLASS_NAMES_POTATO = ["Early Blight", "Late Blight", "Healthy"]
 CLASS_NAMES_TOMATO = [
