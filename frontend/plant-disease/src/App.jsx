@@ -11,6 +11,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Toaster, toast } from 'react-hot-toast';
 import Chatbot from './Chatbot';
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 const PotatoPlantDisease = () => {
   const [causes, setCauses] = useState(null);
   const [prediction, setPrediction] = useState(null);
@@ -47,7 +49,7 @@ const PotatoPlantDisease = () => {
       }
       else{ b = "Potato_" + arr[0] + "_" + arr[1];}
       if (user) {
-        await axios.post('http://localhost:3000/incrementPotato', {
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/incrementPotato`, {
           email: user.email,
           response: b,
         });
@@ -273,13 +275,21 @@ const App = () => {
   const { user, isAuthenticated } = useAuth0();
   useEffect(() => {
     const makeRequest = async () => {
-      const res = await axios.post("http://localhost:3000/login", {
-        email: user?.email,
-        name: user?.name,
-      });
-      console.log("LOGIN SUCCESSFUL", res);
+      if (user?.email) {
+        try {
+          const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+            email: user.email,
+            name: user.name,
+          });
+          console.log("LOGIN SUCCESSFUL", res);
+        } catch (error) {
+          console.error("Login error:", error);
+        }
+      }
     };
-    makeRequest();
+    if (isAuthenticated) {
+      makeRequest();
+    }
   }, [isAuthenticated, user]);
 
   return (
