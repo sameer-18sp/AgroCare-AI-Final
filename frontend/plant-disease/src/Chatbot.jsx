@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import './Chatbot.css';
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+// const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+const API_BASE="https://agroaibackend-f1p9.onrender.com";
 
 // Agriculture keywords
 const agroKeywords = [
