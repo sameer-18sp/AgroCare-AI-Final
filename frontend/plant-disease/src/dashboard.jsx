@@ -23,7 +23,7 @@ const Dashboard = () => {
         try {
           const token = await getAccessTokenSilently();
           // const res = await axios.get('http://localhost:8000/history', {
-          const res = await axios.get('http://https://agroaibackend-f1p9.onrender.com/history', {
+          const res = await axios.get('https://agroaibackend-f1p9.onrender.com/history', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setHistory(res.data);
