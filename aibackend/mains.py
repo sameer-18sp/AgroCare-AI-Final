@@ -175,7 +175,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb+srv://sapa22cs:6wZ8eGR8YBgvxb69@cluster0.ermvtlx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/")
 db = client["agrocare"]
 history_collection = db["history"]
 
