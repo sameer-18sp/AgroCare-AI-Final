@@ -7,4 +7,5 @@ Pillow
 tensorflow
 pymongo
 python-jose
+python-multipart
 
