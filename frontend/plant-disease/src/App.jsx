@@ -32,7 +32,8 @@ const PotatoPlantDisease = () => {
         return;
       }
       const token = await getAccessTokenSilently();
-      const response = await axios.post('http://localhost:8000/predict/potato', formData, {
+      // const response = await axios.post('http://localhost:8000/predict/potato', formData, {
+      const response = await axios.post('https://agroaibackend-f1p9.onrender.com/predict/potato', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
@@ -124,7 +125,9 @@ const TomatoPlantDisease = () => {
         return;
       }
       const token = await getAccessTokenSilently();
-      const response = await axios.post('http://localhost:8000/predict/tomato', formData, {
+      // const response = await axios.post('http://localhost:8000/predict/tomato', formData, {
+            const response = await axios.post('https://agroaibackend-f1p9.onrender.com/predict/tomato', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
@@ -207,7 +210,9 @@ const CapsicumPlantDisease = () => {
         return;
       }
       const token = await getAccessTokenSilently();
-      const response = await axios.post('http://localhost:8000/predict/capsicum', formData, {
+      // const response = await axios.post('http://localhost:8000/predict/capsicum', formData, {
+            const response = await axios.post('https://agroaibackend-f1p9.onrender.com/predict/capsicum', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
