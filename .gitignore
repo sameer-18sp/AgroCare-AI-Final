@@ -19,3 +19,13 @@ __pycache__/
 *.log
 .DS_Store
 
+# Environment files (don't commit secrets)
+aibackend/.env
+*.env
+
+# Large files
+frontend/plant-disease/public/demo-video.mp4
+*.mp4
+*.mov
+*.avi
+

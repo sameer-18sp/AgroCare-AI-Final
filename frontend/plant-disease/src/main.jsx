@@ -11,8 +11,10 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Auth0Provider
-    domain="dev-uco6t85dzenc0bsd.us.auth0.com"
-    clientId="DjyjYvvLNfHneEmCIIsm3HaJZzipC2VI"
+    // domain="dev-uco6t85dzenc0bsd.us.auth0.com"
+    domain="dev-c0dxzv6vxq77zfqm.us.auth0.com"
+    // clientId="DjyjYvvLNfHneEmCIIsm3HaJZzipC2VI"
+    clientId='05ZS1gWDiyV9mkDszjao97UeYkG8Obfy'
     authorizationParams={{
       redirect_uri: window.location.origin,
       audience: "https://seed-sync/api",

@@ -194,9 +194,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_POTATO = tf.keras.models.load_model(r"../models/Potato_models/1.keras")
-MODEL_TOMATO = tf.keras.models.load_model(r"../models/tomato_models/1.keras")
-MODEL_CAPSICUM = tf.keras.models.load_model(r"../models/Capsicum_models/1.keras")
+MODEL_POTATO = tf.keras.models.load_model(r"./models/Potato_models/1.keras")
+MODEL_TOMATO = tf.keras.models.load_model(r"./models/tomato_models/1.keras")
+MODEL_CAPSICUM = tf.keras.models.load_model(r"./models/Capsicum_models/1.keras")
 
 CLASS_NAMES_POTATO = ["Early Blight", "Late Blight", "Healthy"]
 CLASS_NAMES_TOMATO = [
