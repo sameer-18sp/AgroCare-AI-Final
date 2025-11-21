@@ -148,7 +148,6 @@ const TomatoPlantDisease = () => {
         });
       }
       // const res3 = await axios.post('http://localhost:3000/getFromDB', {
-        ttps://agrocare-ai-final.onrender.com
       const res3 = await axios.post('https://agrocare-ai-final.onrender.com/getFromDB', {
         
         response: response.data.class,
