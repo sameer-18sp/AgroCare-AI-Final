@@ -185,7 +185,7 @@ app = FastAPI()
 from chatbot_api import router as chatbot_router
 app.include_router(chatbot_router)
 
-origins = ["http://localhost:5173"]
+origins = ["http://localhost:5173","https://agro-care-ai-final.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
