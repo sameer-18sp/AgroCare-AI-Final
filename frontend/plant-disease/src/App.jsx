@@ -48,12 +48,17 @@ const PotatoPlantDisease = () => {
       }
       else{ b = "Potato_" + arr[0] + "_" + arr[1];}
       if (user) {
-        await axios.post('http://localhost:3000/incrementPotato', {
+       
+        // await axios.post('http://localhost:3000/incrementPotato', {
+        await axios.post('https://agrocare-ai-final.onrender.com/incrementPotato', {
           email: user.email,
           response: b,
         });
       }
-      const res3 = await axios.post('http://localhost:3000/getFromDB', {
+      // const res3 = await axios.post('http://localhost:3000/getFromDB', {
+       const res3 = await axios.post('https://agrocare-ai-final.onrender.com/getFromDB', {
+      
+      
         response: response.data.class,
       });
       setLoading(false);
@@ -135,12 +140,17 @@ const TomatoPlantDisease = () => {
       });
       setPrediction(response.data);
       if (user) {
-        await axios.post('http://localhost:3000/incrementGeneral', {
+        // await axios.post('http://localhost:3000/incrementGeneral', {
+        await axios.post('https://agrocare-ai-final.onrender.com/incrementGeneral', {
+        
           email: user.email,
           response: response.data.class,
         });
       }
-      const res3 = await axios.post('http://localhost:3000/getFromDB', {
+      // const res3 = await axios.post('http://localhost:3000/getFromDB', {
+        ttps://agrocare-ai-final.onrender.com
+      const res3 = await axios.post('https://agrocare-ai-final.onrender.com/getFromDB', {
+        
         response: response.data.class,
       });
       setLoading(false);
@@ -220,12 +230,15 @@ const CapsicumPlantDisease = () => {
       });
       setPrediction(response.data);
       if (user) {
-        await axios.post('http://localhost:3000/incrementGeneral', {
+        // await axios.post('http://localhost:3000/incrementGeneral', {
+        await axios.post('https://agrocare-ai-final.onrender.com/incrementGeneral', {
+        
           email: user.email,
           response: response.data.class,
         });
       }
-      const res3 = await axios.post('http://localhost:3000/getFromDB', {
+      // const res3 = await axios.post('https://localhost:3000/getFromDB', {
+      const res3 = await axios.post('https://agrocare-ai-final.onrender.com/getFromDB', {
         response: response.data.class,
       });
       setLoading(false);
@@ -278,7 +291,8 @@ const App = () => {
   const { user, isAuthenticated } = useAuth0();
   useEffect(() => {
     const makeRequest = async () => {
-      const res = await axios.post("http://localhost:3000/login", {
+      // const res = await axios.post("http://localhost:3000/login", {
+      const res = await axios.post("http://https://agrocare-ai-final.onrender.com/login", {
         email: user?.email,
         name: user?.name,
       });
