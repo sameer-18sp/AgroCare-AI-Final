@@ -250,18 +250,17 @@ export const Home = () => {
                 </div>
               ) : (
                 <div className="video-player">
-                  <video
-                    controls
-                    autoPlay
-                    style={{
-                      width: '100%',
-                      borderRadius: '15px',
-                      maxHeight: '400px'
-                    }}
-                  >
-                    <source src="/demo-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  {/* Embed YouTube demo video */}
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                    <iframe
+                      title="AgroCare Demo"
+                      src="https://www.youtube.com/embed/GC_h255anM0?autoplay=1"
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '15px' }}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
               )}
             </div>
