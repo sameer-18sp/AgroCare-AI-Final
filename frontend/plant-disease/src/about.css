@@ -1,63 +1,68 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Match home page theme: dark gradient background and green accents */
+:root{
+  --accent-green: #22c55e;
+  --muted-light: #d1fae5;
+  --muted-2: #86efac;
+  --card-bg: rgba(255,255,255,0.04);
 }
 
-.about-us {
-  background-image: url('/static_img/pbg.jpg'); /* Your image remains */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+*{box-sizing:border-box;margin:0;padding:0}
+
+.about-us{
+  /* use same gradient as home for consistent background */
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #134e4a 75%, #065f46 100%);
+  min-height: 100vh;
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
 }
 
-.about-us-content {
-  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent overlay */
-  color: #1f3a2d;
-  padding: 50px;
+.about-us-content{
+  background: var(--card-bg);
+  color: var(--muted-light);
+  padding: 42px;
   border-radius: 16px;
-  max-width: 700px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  font-family: 'Segoe UI', sans-serif;
+  max-width: 900px;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-.about-us h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-  font-family: 'Itim', cursive;
-  color: #2f5f38;
+.about-us h1{
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  color: #fff;
+  line-height:1.1;
 }
 
-.about-us p {
-  font-size: 1.1em;
+.about-us p{
+  font-size: 1rem;
   line-height: 1.8;
-  color: #3b3b3b;
-  margin-bottom: 16px;
+  color: var(--muted-light);
+  margin-bottom: 14px;
 }
 
-.about-us h2 {
-  font-size: 1.8em;
-  margin-top: 30px;
-  color: #4c8056;
-  font-family: 'Kanit', sans-serif;
-  font-weight: bold;
+.about-us h2{
+  font-size: 1.4rem;
+  margin-top: 20px;
+  color: var(--muted-2);
+  font-weight:700;
 }
 
-.about-us a {
-  color: #2f5f38;
+.about-us a{
+  color: var(--accent-green);
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  font-weight:700;
 }
 
-.about-us a:hover {
-  color: #66a36e;
-  text-decoration: underline;
+.about-us a:hover{color:#86efac;text-decoration:underline}
+
+@media (max-width:768px){
+  .about-us{padding:28px 16px}
+  .about-us-content{padding:24px}
+  .about-us h1{font-size:1.6rem}
 }
