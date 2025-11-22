@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 export const Home = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [currentStat, setCurrentStat] = useState(0);
@@ -66,14 +68,23 @@ export const Home = () => {
   }, []);
 
   const handleStartAnalyzing = () => {
-    // Add smooth scroll to top and then navigate
+    // If user isn't authenticated, send them to login
+    if (!isAuthenticated) {
+      // Prefer direct login redirect if available, otherwise route to /login
+      try {
+        loginWithRedirect();
+        return;
+      } catch (e) {
+        navigate('/login');
+        return;
+      }
+    }
+
+    // Authenticated users go to the potato analyze page by default
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
-      // Replace with your actual route or action
-      console.log('Navigating to analysis page...');
-      // window.location.href = '/analyze';
-      alert('Redirecting to analysis page... (Replace with your route)');
-    }, 500);
+      navigate('/potato');
+    }, 200);
   };
 
   const handleWatchDemo = () => {
@@ -92,14 +103,23 @@ export const Home = () => {
   };
 
   const handleTryFree = () => {
+    // If user isn't authenticated, send them to login first
+    if (!isAuthenticated) {
+      try {
+        loginWithRedirect();
+        return;
+      } catch (e) {
+        navigate('/login');
+        return;
+      }
+    }
+
+    // If authenticated, show success and go to dashboard
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
-      // Replace with your actual signup route
-      console.log('Navigating to signup...');
-      // window.location.href = '/signup';
-      alert('Redirecting to signup... (Replace with your route)');
-    }, 2000);
+      navigate('/dashboard');
+    }, 1200);
   };
 
   const closeModal = () => {
